@@ -5,10 +5,12 @@
                 <!-- <figure class="image mb-6">
                     <img v-bind:src="post.get_image" />
                 </figure> -->
-                <h1 class="title has-text-centered has-text-primary">{{ post.title}}</h1>
-                <p>{{ post.description}}</p>
+                <h1 class="title has-text-centered has-text-primary">
+                    {{ post.title}}</h1>
             </div>
-            
+            <div class="column is-12">
+                <div v-html=" post.body"></div> 
+            </div>
         </div>
     </div>
 </template>
@@ -20,7 +22,7 @@ export default {
     data () {
         return {
             post: {},
-            
+
         };
     },
     mounted () {
@@ -42,7 +44,7 @@ export default {
                 });
             this.$store.commit('setIsLoading', false)
         },
-       
+
     },
 };
 </script>

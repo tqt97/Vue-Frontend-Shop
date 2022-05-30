@@ -3,13 +3,14 @@
         <div class="columns is-multiline">
             <div class="column is-7">
                 <figure class="image">
-                    <img v-bind:src="product.get_image" />
+                    <img v-bind:src="product.image" />
                 </figure>
             </div>
             <div class="column is-5">
                 <!-- <h2 class="subtitle">Information</h2> -->
                 <h3 class="title">{{ product.name}}</h3>
-                <h3 class="subtitle is-5 mt-5"><strong>Rating:</strong> {{ product.get_rating}}</h3>
+                <h3 class="subtitle is-5 mt-5"><strong>Rating:</strong>
+                    {{ product.get_rating}}</h3>
                 <h3 class="subtitle is-5 mt-5"><strong>Price:
                     </strong>${{ product.price}}</h3>
                 <div class="field has-addons mt-6">
@@ -28,7 +29,8 @@
             <div class="column is-12">
                 <hr>
                 <h1 class="title">Description</h1>
-                <div class="has-text-justified">{{ product.description}}</div>
+                <div class="has-text-justified" v-html="product.description">
+                </div>
             </div>
             <hr>
             <hr>
@@ -49,42 +51,49 @@
                 </div>
 
             </div>
-            <div class="column is-12 mt-2">
-                <h1 class="title">Comment</h1>
-                <form @submit.prevent="submitForm" class="box">
-                    <div class="field">
-                        <label class="label">Rating</label>
-                        <div class="select">
-                            <select name="rating" v-model="rating">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3" selected>3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                        </div>
+            <template v-if="$store.state.isAuthenticated">
+                <div class="column is-12 mt-2">
+                    <h1 class="title">Comment</h1>
+                    <form @submit.prevent="submitForm" class="box">
+                        <div class="field">
+                            <label class="label">Rating</label>
+                            <div class="select">
+                                <select name="rating" v-model="rating">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3" selected>3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
 
-                    </div>
-                    <div class="field">
-                        <label class="label">Content</label>
-                        <div class="control has-icons-left">
-                            <textarea v-model="content" class="textarea"
-                                name="content" cols="30" rows="5">
+                        </div>
+                        <div class="field">
+                            <label class="label">Content</label>
+                            <div class="control has-icons-left">
+                                <textarea v-model="content" class="textarea"
+                                    name="content" cols="30" rows="5">
                             </textarea>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="field">
-                        <div class="control">
-                            <button class="button is-primary">
-                                Submit
-                            </button>
+                        <div class="field">
+                            <div class="control">
+                                <button class="button is-primary">
+                                    Submit
+                                </button>
+                            </div>
                         </div>
-                    </div>
 
-                </form>
-            </div>
-
+                    </form>
+                </div>
+            </template>
+            <template v-else>
+                <div class="column is-12 mt-2">
+                    <h1 class="title">Comment</h1>
+                    Login <router-link to="/log-in">here</router-link>
+                </div>
+            </template>
         </div>
     </div>
 </template>

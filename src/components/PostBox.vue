@@ -5,16 +5,16 @@
                 <img :src="post.get_thumbnail" alt="thumbnail">
             </figure>
             <router-link v-bind:to="post.get_absolute_url">
-                <h3
-                    class="is-size-5 has-text-centered has-text-weight-medium">
-                    {{ post.get_title }}
+                <h3 class="is-size-5 has-text-centered has-text-weight-medium">
+                    {{ post.get_title}}
                 </h3>
             </router-link>
-            <p class="is-size-6 has-text-centered mt-2">{{ post.get_description}}
+            <p class="is-size-6 has-text-centered mt-2">
+                {{ post.get_description}}
             </p>
-            <p class="has-text-centered p-3">                
+            <p class="has-text-centered p-3">
                 <router-link v-bind:to="post.get_absolute_url">
-                   <button class="button is-success">Read more</button>
+                    <button class="button is-success">Read more</button>
                 </router-link>
             </p>
         </div>
